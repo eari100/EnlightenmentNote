@@ -1,0 +1,62 @@
+{{>layout/header}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.css" rel="stylesheet">
+</head>
+<body>
+
+<h1>깨점쓰(베타)</h1>
+
+<br>
+
+<div id="search-div" class="d-grid gap-1">
+    <div class="p-2 bg-light border">
+        <div class="input-group flex-nowrap input-group-sm">
+            <span class="input-group-text" id="title-addon-wrapping">제목</span>
+            <input type="text" id="title" class="form-control" placeholder="제목을 입력하세요." aria-label="title" aria-describedby="title-addon-wrapping">
+        </div>
+    </div>
+    <div class="p-2 bg-light border">
+        <div class="input-group flex-nowrap input-group-sm">
+            <span class="input-group-text" id="content-addon-wrapping">본문</span>
+            <input type="text" id="content" class="form-control" placeholder="본문을 입력하세요." aria-label="content" aria-describedby="content-addon-wrapping">
+        </div>
+    </div>
+    <div class="p-2 bg-light border">
+        <div class="input-group flex-nowrap input-group-sm ">
+            <span class="input-group-text" id="author-addon-wrapping">작성자</span>
+            <input type="text" id="author" class="form-control" placeholder="작성자를 입력하세요." aria-label="author" aria-describedby="author-addon-wrapping">
+        </div>
+    </div>
+    <div class="p-2 bg-light border">
+        <select id="category" class="form-select form-select-sm" aria-label="category select box">
+            <option value="">전체</option>
+        </select>
+    </div>
+</div>
+
+<button id="search-btn" type="button" class="btn btn-primary btn-sm float-end">검색(엔터)</button>
+
+<br>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>카테고리</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>등록일</th>
+    </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+</table>
+
+<div id="pagination"></div>
+
+<button id="write-btn" type="button" class="btn btn-secondary btn-sm float-end">글쓰기</button>
+
+{{>layout/footer}}
+
+<script src="https://pagination.js.org/dist/2.1.5/pagination.min.js"></script>
+<script src="/js/api/postsApi.js"></script>
+<script src="/js/api/categoriesApi.js"></script>
+<script src="/js/util/componentUtil.js"></script>
+<script src="/js/view/index.js"></script>

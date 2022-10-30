@@ -1,0 +1,81 @@
+spring:
+  profiles:
+    group:
+      "dev": "dev-db, common"
+
+---
+
+spring:
+  profiles:
+    group:
+      "test": "test-db, common"
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: "common"
+
+server:
+  servlet:
+    encoding:
+      force-response: true
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: "dev-db"
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/lol-planet?serverTimezone=UTC&characterEncoding=UTF-8
+    username: mysql_user
+    password: mysql_pw
+
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: trace
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: "test-db"
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: trace
